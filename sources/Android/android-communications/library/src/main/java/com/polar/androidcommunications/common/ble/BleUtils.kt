@@ -47,7 +47,7 @@ class BleUtils private constructor() {
         private fun getCode(type: Byte): AD_TYPE {
             return try {
                 if (type.toInt() == -1) AD_TYPE.GAP_ADTYPE_MANUFACTURER_SPECIFIC else AD_TYPE.entries[type.toInt()]
-            } catch (ex: ArrayIndexOutOfBoundsException) {
+            } catch (ex: IndexOutOfBoundsException) {
                 AD_TYPE.GAP_ADTYPE_UNKNOWN
             }
         }
@@ -86,7 +86,7 @@ class BleUtils private constructor() {
                     }
                     offset += fieldLen + 1
                 }
-            } catch (ex: ArrayIndexOutOfBoundsException) {
+            } catch (ex: IndexOutOfBoundsException) {
                 e(TAG, "incorrect advertisement data detected: " + ex.localizedMessage)
             }
             return adTypeHashMap
